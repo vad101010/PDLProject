@@ -1,4 +1,4 @@
-package com.company;
+package pdl.wiki;
 
 public class Main {
 
