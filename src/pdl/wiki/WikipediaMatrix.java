@@ -1,6 +1,8 @@
 package pdl.wiki;
 
-public class Main {
+public class WikipediaMatrix
+{
+    String savePath;
 
     public static void main(String[] args)
     {

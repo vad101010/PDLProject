@@ -19,3 +19,8 @@ Projet PDL Wiki
 
 ## Patch 0.0.6
 * Ajout du Sketch dans le dossier other
+* Ajout PDF Cahier des charges
+
+## Patch 0.1
+* Début du projet(java)
+* Squelette de toutes les classes fait
