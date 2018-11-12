@@ -24,3 +24,7 @@ Projet PDL Wiki
 ## Patch 0.1
 * Début du projet(java)
 * Squelette de toutes les classes fait
+
+## Patch 0.1.1
+* Ajout des classes de test
+* Ajout de Junit dans les sources du projet 
