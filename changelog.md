@@ -28,3 +28,7 @@ Projet PDL Wiki
 ## Patch 0.1.1
 * Ajout des classes de test
 * Ajout de Junit dans les sources du projet 
+
+## Pathc 0.1.2
+* Fichier Page completer
+* Fichier Url completer

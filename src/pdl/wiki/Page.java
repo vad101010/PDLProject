@@ -11,6 +11,7 @@ public class Page
     public Url getUrl()
     {
         return url;
+        
     }
 
     public String getTitle()
