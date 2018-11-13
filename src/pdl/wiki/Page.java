@@ -6,10 +6,11 @@ public class Page
 {
     private String title;
     private ArrayList<String> csvList;
+    private Url url
 
     public Url getUrl()
     {
-        return null;
+        return url;
     }
 
     public String getTitle()
