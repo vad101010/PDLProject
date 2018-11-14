@@ -39,3 +39,6 @@ Projet PDL Wiki
 * Ajout de méthode et 2 "new" dans Page
 * Ajout de méthode dans URL et d'un "new"
 * Correction des fautes dans le changelog.md v.0.1.2
+
+## Patch 0.3
+* Première version de PageChecker
