@@ -29,6 +29,13 @@ Projet PDL Wiki
 * Ajout des classes de test
 * Ajout de Junit dans les sources du projet 
 
-## Pathc 0.1.2
-* Fichier Page completer
-* Fichier Url completer
+## Patch 0.1.2
+* Fichier Page completé
+* Fichier Url completé
+
+## Patch 0.2
+* Première version du main terminé
+* Squelette TU main ajouté
+* Ajout de méthode et 2 "new" dans Page
+* Ajout de méthode dans URL et d'un "new"
+* Correction des fautes dans le changelog.md v.0.1.2
