@@ -54,3 +54,7 @@ Projet PDL Wiki
 ## Patch 0.3.3
 * Suppression des setters de la classe Url
 * Gestion du titre de la classe Page
+
+## Patch 0.3.4
+* Main terminé à 100% (TU à faire)
+* Méthode dans WikiTextExtractor modifié pour les tests

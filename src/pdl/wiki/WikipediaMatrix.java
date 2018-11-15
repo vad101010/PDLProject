@@ -1,9 +1,6 @@
 package pdl.wiki;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class WikipediaMatrix
@@ -22,7 +19,10 @@ public class WikipediaMatrix
             int nbcsv = 0;
             for (Url url : urls)
             {
-                nbcsv += url.getTableCount();
+                if (url.isValid())
+                {
+                    nbcsv += url.getTableCount();
+                }
             }
             System.out.println("Les CSV seront sauvegarder sous : '" + savePath + "'");
             System.out.println("Nombre de tableau trouvé : " + nbcsv);
@@ -35,7 +35,7 @@ public class WikipediaMatrix
             {
                 System.out.println("5. Sauvegarder les tableaux (au format CSV) et quitter");
             }
-            System.out.println("0. Quitter");
+            System.out.println("0. Quitter sans sauvegarder");
             System.out.println("votre choix ?");
             try
             {
@@ -70,6 +70,7 @@ public class WikipediaMatrix
                     if (nbcsv > 0)
                     {
                         saveCSV();
+                        System.exit(0);
                         break;
                     }
                 default:
@@ -204,7 +205,50 @@ public class WikipediaMatrix
         }
         for (Url url : urls)
         {
-            Page page = new Page(url, extractor.getCSV(url));
+            if (url.isValid())
+            {
+                Page page = new Page(url, extractor.getCSV(url));
+                pages.add(page);
+            }
+        }
+        PagetoFile();
+    }
+
+    /**
+     * enregistre les Pages au format CSV
+     */
+    private static void PagetoFile()
+    {
+        for (Page page : pages)
+        {
+            int i = 0;
+            for (String csv : page.getCsvList())
+            {
+                String fileSeparator = System.getProperty("file.separator");
+                File file = new File(savePath + fileSeparator + page.getTitleWithoutSpace() + "(" + i + ")" + ".csv");
+                try
+                {
+                    file.createNewFile();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+                FileOutputStream fos = null;
+                try
+                {
+                    fos = new FileOutputStream(file.getAbsolutePath());
+                    fos.write(csv.getBytes());
+                    fos.flush();
+                    fos.close();
+                    System.out.println("'" + file.getAbsolutePath() + "' a été enregistré");
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+                i++;
+            }
         }
     }
 

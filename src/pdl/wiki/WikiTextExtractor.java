@@ -12,6 +12,9 @@ public class WikiTextExtractor implements Extractor
     @Override
     public ArrayList<String> getCSV(Url purl)
     {
-        return null;
+        ArrayList<String> liste = new ArrayList<>();
+        liste.add("Dupont est le meilleur");
+        liste.add("Dupont est pas le meilleur");
+        return liste;
     }
 }
