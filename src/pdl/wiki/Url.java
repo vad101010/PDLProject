@@ -34,16 +34,6 @@ public class Url
     }
 
     /**
-     * Permet de modifier le lien
-     *
-     * @param link est une chaîne de caractère correspondant au lien
-     */
-    public void setLink(String link)
-    {
-        this.link = link;
-    }
-
-    /**
      * Permet de tester si le lien est valide
      *
      * @return retourne vrai si le lien est valide, faux sinon
@@ -51,16 +41,6 @@ public class Url
     public boolean isValid()
     {
         return valid;
-    }
-
-    /**
-     * Permet de définir le lien
-     *
-     * @param valid est un booléen lié à la validité du lien
-     */
-    public void setValid(boolean valid)
-    {
-        this.valid = valid;
     }
 
     /**
@@ -79,16 +59,6 @@ public class Url
     public int getTableCount()
     {
         return tableCount;
-    }
-
-    /**
-     * Permet d'ajouter le nombre de tableau à la base
-     *
-     * @param tableCount est l'entier correspondant au nombre de tableau de la page
-     */
-    public void setTableCount(int tableCount)
-    {
-        this.tableCount = tableCount;
     }
 
     @Override

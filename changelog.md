@@ -50,3 +50,7 @@ Projet PDL Wiki
 ## Patch 0.3.2
 * Ajout d'une liste (List<Element> de jsoup )des tableaux trouvés dans l'Url (à utiliser dans le HtmlExtractor)
 * Correction classe Url
+
+## Patch 0.3.3
+* Suppression des setters de la classe Url
+* Gestion du titre de la classe Page
