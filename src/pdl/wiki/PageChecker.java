@@ -7,6 +7,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class PageChecker
 {
@@ -16,10 +18,10 @@ public abstract class PageChecker
      * @param pUrl, c'est le lien de l'url qui est vérifiée
      * @return -1 si le lien fourni n'est pas exploitable ou le nombre de tableaux présents sur la page (0 ou +)
      */
-    public static int urlCheck(String pUrl)
+    public static List<Element> urlCheck(String pUrl)
     {
         // On ajoute le https s'il n'est pas présent dans l'url
-        if (pUrl.contains("http") && !pUrl.startsWith("https")) {
+        if (pUrl.startsWith("http") && !pUrl.startsWith("https")) {
             pUrl = "https" + pUrl.substring(4);
         } else if (!pUrl.contains("://")) {
             pUrl = "https://" + pUrl;
@@ -27,7 +29,8 @@ public abstract class PageChecker
         if (pageExist(pUrl)) {
             return pageContainsTable(pUrl);
         }
-        return -1;
+//        return new ArrayList<Element>();
+        return null;
     }
 
     /**
@@ -56,8 +59,9 @@ public abstract class PageChecker
      * @param pUrl
      * @return le nombre de tableaux présents sur la page
      */
-    private static int pageContainsTable(String pUrl)
+    private static List<Element> pageContainsTable(String pUrl)
     {
+        List<Element> colTable = new ArrayList<Element>();
         int nbTables = 0;
         Document page = null;
         try {
@@ -68,12 +72,14 @@ public abstract class PageChecker
                 // On compte le nombre de cases fusionnées afin d'en ignorer les tableaux parents
                 int nbExtendedCells = table.select("td[colspan]").size() + table.select("td[rowspan]").size();
                 if (nbExtendedCells == 0) {
-                    nbTables++;
+//                    nbTables++;
+                    colTable.add(table);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return nbTables;
+//        return nbTables;
+        return colTable;
     }
 }

@@ -1,5 +1,9 @@
 package pdl.wiki;
 
+import org.jsoup.nodes.Element;
+
+import java.util.List;
+
 /**
  * Permet de récupérer un lien, de tester sa validité et d'ajouter le nombre de tableau présent à une base
  * retourne le lien,sa validité et le nombre de tableau
@@ -9,12 +13,14 @@ public class Url
     private String link;
     private boolean valid;
     private int tableCount;
+    private List<Element> listTables;
 
     public Url(String link)
     {
         this.link = link;
-        this.tableCount = PageChecker.urlCheck(link);
-        this.valid = tableCount > 0;
+        this.listTables = PageChecker.urlCheck(link);
+        this.tableCount = (listTables != null ? listTables.size() : -1);
+        this.valid = tableCount > -1;
     }
 
     /**
@@ -58,6 +64,14 @@ public class Url
     }
 
     /**
+     *
+     * @return une liste des Element tables trouvés sur la page
+     */
+    public List<Element> getListTables() {
+        return listTables;
+    }
+
+    /**
      * Permet de récupérer le nombre de tableau qu'il y a dans la page
      *
      * @return retourne le nombre de tableau de la page
@@ -84,6 +98,6 @@ public class Url
         {
             return link + "(Lien invalide !)";
         }
-        return link + "(" + tableCount + " tableau trouvés)";
+        return link + "(" + tableCount + ((tableCount) > 1 ? " tableaux trouvés)" : " tableau trouvé)");
     }
 }

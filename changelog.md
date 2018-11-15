@@ -46,3 +46,7 @@ Projet PDL Wiki
 ## Patch 0.3.1
 * Correction de bugs au niveau du main
 * Modification des classes de test (Extractor)
+
+## Patch 0.3.2
+* Ajout d'une liste (List<Element> de jsoup )des tableaux trouvés dans l'Url (à utiliser dans le HtmlExtractor)
+* Correction classe Url
