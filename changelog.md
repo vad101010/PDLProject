@@ -42,3 +42,7 @@ Projet PDL Wiki
 
 ## Patch 0.3
 * Première version de PageChecker
+
+## Patch 0.3.1
+* Correction de bugs au niveau du main
+* Modification des classes de test (Extractor)

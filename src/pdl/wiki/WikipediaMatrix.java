@@ -8,24 +8,24 @@ import java.util.ArrayList;
 
 public class WikipediaMatrix
 {
-    private static String savePath = "C:\\Users\\Public\\Documents";
-    private static ArrayList<Page> pages;
-    private static ArrayList<Url> urls;
+    private static String savePath = System.getProperty("user.home");
+    private static ArrayList<Page> pages = new ArrayList<>();
+    private static ArrayList<Url> urls = new ArrayList<>();
 
     public static void main(String[] args)
     {
         System.out.println("Bonjour !");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int choix = 0;
-        int nbcsv = 0;
+        int choix = -1;
         while (true)
         {
-            for (Page page : pages)
+            int nbcsv = 0;
+            for (Url url : urls)
             {
-                nbcsv += page.getCsvList().size();
+                nbcsv += url.getTableCount();
             }
-            System.out.println("Les CSV seront sauvegarder sous :" + savePath);
-            System.out.println("Nombre de CSV trouvé :" + nbcsv);
+            System.out.println("Les CSV seront sauvegarder sous : '" + savePath + "'");
+            System.out.println("Nombre de tableau trouvé : " + nbcsv);
             System.out.println("Veuillez choisir une option parmis:");
             System.out.println("1. Lister les liens");
             System.out.println("2. Ajouter un lien (Wikipedia)");
@@ -33,14 +33,17 @@ public class WikipediaMatrix
             System.out.println("4. Changer le lieu de sauvegarde");
             if (nbcsv > 0)
             {
-                System.out.println("5. Sauvegarder les CSV et quitter");
+                System.out.println("5. Sauvegarder les tableaux (au format CSV) et quitter");
             }
             System.out.println("0. Quitter");
             System.out.println("votre choix ?");
             try
             {
                 String strchoix = reader.readLine();
-                choix = Integer.parseInt(strchoix);
+                if (tryParseInt(strchoix))
+                {
+                    choix = Integer.parseInt(strchoix);
+                }
             }
             catch (IOException e)
             {
@@ -64,19 +67,32 @@ public class WikipediaMatrix
                     changeSaveLocation();
                     break;
                 case 5:
-                    saveCSV();
-                    break;
+                    if (nbcsv > 0)
+                    {
+                        saveCSV();
+                        break;
+                    }
                 default:
                     System.out.println("veuillez faire un choix entre 0 et 5");
             }
         }
     }
 
+    /**
+     * Liste les liens ajoutés par l'utilisateur
+     */
     private static void linkList()
     {
-        for (Url url : urls) { url.toString();}
+        if (urls.size() == 0)
+        {
+            System.out.println("Aucun lien enregistré");
+        }
+        for (Url url : urls) { System.out.println(url.toString()); }
     }
 
+    /**
+     * Propose à l'utilisateur d'ajouter un lien
+     */
     private static void addLink()
     {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -92,8 +108,16 @@ public class WikipediaMatrix
         }
     }
 
+    /**
+     * propose de retirer un lien parmis la liste à l'utilisateur
+     */
     private static void removeLink()
     {
+        if (urls.size() == 0)
+        {
+            System.out.println("Aucun lien enregistré");
+            return;
+        }
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("liste des liens enregistrés:");
         for (int i = 0; i < urls.size(); i++)
@@ -107,7 +131,10 @@ public class WikipediaMatrix
             {
                 System.out.println("Numéro du lien à supprimer ?");
                 String strnumlien = reader.readLine();
-                numlien = Integer.parseInt(strnumlien);
+                if (tryParseInt(strnumlien))
+                {
+                    numlien = Integer.parseInt(strnumlien);
+                }
             }
             urls.remove(numlien);
         }
@@ -117,6 +144,9 @@ public class WikipediaMatrix
         }
     }
 
+    /**
+     * Propose à l'utilisateur un nouveau lieu de stockage pour ses sauvegarde de CSV
+     */
     private static void changeSaveLocation()
     {
         boolean exists = false;
@@ -137,6 +167,9 @@ public class WikipediaMatrix
         }
     }
 
+    /**
+     * Sauvegarde les CSV trouvé dans le lieu de stockage enregistré
+     */
     private static void saveCSV()
     {
         int choix = 0;
@@ -151,7 +184,10 @@ public class WikipediaMatrix
             try
             {
                 strchoix = reader.readLine();
-                choix = Integer.parseInt(strchoix);
+                if (tryParseInt(strchoix))
+                {
+                    choix = Integer.parseInt(strchoix);
+                }
             }
             catch (IOException e)
             {
@@ -169,6 +205,25 @@ public class WikipediaMatrix
         for (Url url : urls)
         {
             Page page = new Page(url, extractor.getCSV(url));
+        }
+    }
+
+    /**
+     * vérifie si il est possible ou non de parser un String en int
+     *
+     * @param value String à parser
+     * @return true ssi un String peut être parsé en int
+     */
+    private static boolean tryParseInt(String value)
+    {
+        try
+        {
+            Integer.parseInt(value);
+            return true;
+        }
+        catch (NumberFormatException e)
+        {
+            return false;
         }
     }
 }
