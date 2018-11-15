@@ -57,4 +57,8 @@ Projet PDL Wiki
 
 ## Patch 0.3.4
 * Main terminé à 100% (TU à faire)
-* Méthode dans WikiTextExtractor modifié pour les tests
+* Méthode dans WikiTextExtractor modifiée pour les tests
+
+## Patch 0.3.5
+* Gestion des paramètres et liens internes lors de la génération du titre
+* Message d'erreur si le lien entré est invalide

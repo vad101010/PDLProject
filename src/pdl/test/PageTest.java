@@ -2,8 +2,6 @@ package pdl.test;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class PageTest
 {
 
@@ -23,7 +21,7 @@ public class PageTest
     }
 
     @Test
-    public void setCsvList()
+    public void getTitleWithoutSpace()
     {
     }
 }

@@ -49,7 +49,7 @@ public abstract class PageChecker
                 return pUrl.split("//")[1].split("/")[0].contains("wikipedia");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Une erreur est survenue pendant la connexion à la page (url invalide");
         }
         return false;
     }
@@ -61,25 +61,21 @@ public abstract class PageChecker
      */
     private static List<Element> pageContainsTable(String pUrl)
     {
-        List<Element> colTable = new ArrayList<Element>();
-        int nbTables = 0;
-        Document page = null;
+        List<Element> colTable = new ArrayList<>();
         try {
-            page = Jsoup.connect(pUrl).get();
+            Document page = Jsoup.connect(pUrl).get();
             // Récupération des tableaux de Wikipedia via le selecteur css sur la classe wikitable propre aux tableaux
             Elements tables = page.select(".wikitable");
             for (Element table : tables) {
                 // On compte le nombre de cases fusionnées afin d'en ignorer les tableaux parents
                 int nbExtendedCells = table.select("td[colspan]").size() + table.select("td[rowspan]").size();
                 if (nbExtendedCells == 0) {
-//                    nbTables++;
                     colTable.add(table);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        return nbTables;
         return colTable;
     }
 }
