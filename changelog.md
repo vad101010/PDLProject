@@ -62,3 +62,7 @@ Projet PDL Wiki
 ## Patch 0.3.5
 * Gestion des paramètres et liens internes lors de la génération du titre
 * Message d'erreur si le lien entré est invalide
+
+## Patch 0.3.6
+* Première version de HTMLExtractor
+* Ajout de JSoup
