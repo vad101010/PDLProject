@@ -49,7 +49,7 @@ public abstract class PageChecker
                 return pUrl.split("//")[1].split("/")[0].contains("wikipedia");
             }
         } catch (IOException e) {
-            System.out.println("Une erreur est survenue pendant la connexion à la page (url invalide");
+            System.out.println("Une erreur est survenue pendant la connexion à la page (" + e.getCause() + ")");
         }
         return false;
     }

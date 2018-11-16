@@ -30,6 +30,16 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+        <dependency>
+            <groupId>org.sweble.wikitext</groupId>
+            <artifactId>swc-parser-lazy</artifactId>
+            <version>3.1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180813</version>
+        </dependency>
     </dependencies>
 
 

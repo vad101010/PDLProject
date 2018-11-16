@@ -64,7 +64,7 @@ public class Page
 
     /**
      *
-     * @return
+     * @return le titre sans les paramètres de l'url
      */
     private String purifyTitle() {
         String[] tabUrl = new String[0];

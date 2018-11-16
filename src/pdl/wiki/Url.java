@@ -61,6 +61,29 @@ public class Url
         return tableCount;
     }
 
+    /**
+     *
+     * @return le diminutif de la locale utilisée pour l'API
+     */
+    public String getLang() {
+        String dns = link.split("//")[1].split("/")[0];
+        String lang = dns.split("\\.")[0];
+        return lang.equals("www") ? "en" : lang;
+    }
+
+    public String getPageName() {
+        // TODO : revoir la répartition des infos avec Page afin d'eviter des methodes semblables (purifyTitle)
+        String[] tabUrl = link.split("/");
+        String path = tabUrl[tabUrl.length - 1];
+        if (path.contains("?")) {
+            path = path.split("\\?")[0];
+        }
+        if (path.contains("#")) {
+            path = path.split("#")[0];
+        }
+        return path;
+    }
+
     @Override
     public String toString()
     {
