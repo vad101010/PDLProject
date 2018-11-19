@@ -1,8 +1,8 @@
 package pdl.wiki;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface Extractor
 {
-    ArrayList<String> getCSV(Url purl);
+    List<String> getCSV(Url purl);
 }

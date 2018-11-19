@@ -3,15 +3,15 @@ package pdl.wiki;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.Normalizer;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Page
 {
     private String title;
-    private ArrayList<String> csvList;
+    private List<String> csvList;
     private Url url;
 
-    public Page(Url url, ArrayList<String> csvList)
+    public Page(Url url, List<String> csvList)
     {
         this.url = url;
         this.csvList = csvList;
@@ -42,7 +42,7 @@ public class Page
      * Permet de connaitre la liste des �l�ments contenu dans le fichier csv
      * @return retourne un tableau des diff�rents �l�ments contenu dans le fichier csv
      */
-    public ArrayList<String> getCsvList()
+    public List<String> getCsvList()
     {
         return csvList;
     }

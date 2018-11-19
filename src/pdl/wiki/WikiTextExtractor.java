@@ -2,6 +2,10 @@ package pdl.wiki;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
+import org.sweble.wikitext.parser.WikitextParser;
+import org.sweble.wikitext.parser.nodes.WtNode;
+import org.sweble.wikitext.parser.utils.SimpleParserConfig;
+import xtc.parser.ParseException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,21 +13,26 @@ import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class WikiTextExtractor implements Extractor
 {
-    private ArrayList<String> genCSVList;
-
     @Override
-    public ArrayList<String> getCSV(Url purl)
+    public List<String> getCSV(Url purl)
     {
         ArrayList<String> liste = new ArrayList<>();
         String wikitext = getWikitextFromApi(purl);
         if (!wikitext.equals("")) {
-
+            WikitextParser parser = new WikitextParser(new SimpleParserConfig());
+            try {
+                System.out.println("AVANT parseArticle()");
+                WtNode test = parser.parseArticle(wikitext, "test");
+                System.out.println("APRES parseArticle()");
+                liste.add("ça marche");
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
         }
-        /*liste.add("Dupont est le meilleur");
-        liste.add("Dupont est pas le meilleur");*/
         return liste;
     }
 

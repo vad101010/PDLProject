@@ -51,6 +51,7 @@ public class PageCheckerTest
         urlToTest.add("https://forum.xda-developers.com/");
         urlToTest.add("https://fr.wikipedia.com/");
         urlToTest.add("https://github.com/vad101010/PDLProject");
+        urlToTest.add("https://www.google.fr/");
         for (String url : urlToTest) {
             assertNull(PageChecker.urlCheck(url));
         }

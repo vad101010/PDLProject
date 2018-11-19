@@ -71,3 +71,7 @@ Projet PDL Wiki
 * PageCheckerTest : Mise en place de quelques tests
 * WikiTextExtractor : Récupération du wikitext de la page via l'API MediaWiki
 * Url : Ajout de méthodes pour récupérer la langue et le nom de la page (utilisées dans WTExtractor)
+
+## Patch 0.3.8
+* WikiTextExtractor : Création config du parser
+* MàJ des ArrayList en List
