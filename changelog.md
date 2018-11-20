@@ -83,3 +83,6 @@ Projet PDL Wiki
 * Modification main en accord avec les tests demandés
 * Ajout classe BenchTest du client
 * Classe BenchTest complétée (à vérifier à la fin du projet)
+
+## Patch 0.4.1
+*classe de test  PageTest complétée
