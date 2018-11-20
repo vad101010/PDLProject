@@ -3,6 +3,9 @@ package pdl.wiki;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Classe principale avec l'interface utilisateur
+ */
 public class WikipediaMatrix
 {
     private static String savePath = System.getProperty("user.home");

@@ -5,6 +5,9 @@ import java.net.URLDecoder;
 import java.text.Normalizer;
 import java.util.List;
 
+/**
+ * Classe qui récupère le titre de la page et le nettoie
+ */
 public class Page
 {
     private String title;
@@ -63,7 +66,7 @@ public class Page
     }
 
     /**
-     *
+     * Permet de clarifier le titre des tableaux
      * @return le titre sans les paramètres de l'url
      */
     private String purifyTitle() {

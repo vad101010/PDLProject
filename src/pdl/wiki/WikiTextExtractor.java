@@ -15,6 +15,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Extrait les tableaux des pages HTML en format Wikitext
+ * @return la liste des tableaux CSV créés
+ */
 public class WikiTextExtractor implements Extractor
 {
     @Override
@@ -35,7 +39,11 @@ public class WikiTextExtractor implements Extractor
         }
         return liste;
     }
-
+    
+    /**
+     * Récupère la page HTML à partir de l'URL
+     * @return le wikitext de la page en String
+     */
     private String getWikitextFromApi(Url pUrl) {
         String wt = "";
         try {
