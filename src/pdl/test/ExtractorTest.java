@@ -5,6 +5,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Classe de test pour Extractor
+ */
 public class ExtractorTest
 {
 

@@ -11,7 +11,9 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-
+/**
+ * Classe de test pour PageChecker
+ */
 public class PageCheckerTest
 {
     @Test

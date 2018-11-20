@@ -2,6 +2,9 @@ package pdl.test;
 
 import org.junit.Test;
 
+/**
+ * Classe de test pour Page
+ */
 public class PageTest
 {
 
