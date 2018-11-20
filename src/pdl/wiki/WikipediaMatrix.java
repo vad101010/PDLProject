@@ -176,51 +176,36 @@ public class WikipediaMatrix
      */
     private static void saveCSV()
     {
-        int choix = 0;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Extractor extractor = null;
-        while (choix != 1 && choix != 2)
+        for (int i = 0; i < 2; i++)
         {
-            System.out.println("Sauvegarder via:");
-            System.out.println("1. HTML");
-            System.out.println("2. WikiText");
-            String strchoix = null;
-            try
+            String dirname = "";
+            switch (i)
             {
-                strchoix = reader.readLine();
-                if (tryParseInt(strchoix))
+                case 0:
+                    extractor = new HTMLExtractor();
+                    dirname = "html";
+                    break;
+                case 1:
+                    extractor = new WikiTextExtractor();
+                    dirname = "wikitext";
+            }
+            for (Url url : urls)
+            {
+                if (url.getTableCount() > 0)
                 {
-                    choix = Integer.parseInt(strchoix);
+                    Page page = new Page(url, extractor.getCSV(url));
+                    pages.add(page);
                 }
             }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            switch (choix)
-            {
-                case 1:
-                    extractor = new HTMLExtractor();
-                    break;
-                case 2:
-                    extractor = new WikiTextExtractor();
-            }
+            PagetoFile(dirname);
         }
-        for (Url url : urls)
-        {
-            if (url.isValid())
-            {
-                Page page = new Page(url, extractor.getCSV(url));
-                pages.add(page);
-            }
-        }
-        PagetoFile();
     }
 
     /**
      * enregistre les Pages au format CSV
      */
-    private static void PagetoFile()
+    private static void PagetoFile(String dirname)
     {
         for (Page page : pages)
         {
@@ -228,7 +213,7 @@ public class WikipediaMatrix
             for (String csv : page.getCsvList())
             {
                 String fileSeparator = System.getProperty("file.separator");
-                File file = new File(savePath + fileSeparator + page.getTitleWithoutSpace() + "(" + i + ")" + ".csv");
+                File file = new File(savePath + fileSeparator + dirname + fileSeparator + page.getTitleWithoutSpace() + "-" + i + ".csv");
                 try
                 {
                     file.createNewFile();

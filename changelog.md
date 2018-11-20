@@ -75,3 +75,11 @@ Projet PDL Wiki
 ## Patch 0.3.8
 * WikiTextExtractor : Création config du parser
 * MàJ des ArrayList en List
+
+## Patch 0.4
+* auto indent du code
+* suppression de la méthode privé dans les
+* Correction erreur dans Main
+* Modification main en accord avec les tests demandés
+* Ajout classe BenchTest du client
+* Classe BenchTest complétée (à vérifier à la fin du projet)
