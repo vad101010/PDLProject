@@ -86,3 +86,6 @@ Projet PDL Wiki
 
 ## Patch 0.4.1
 *classe de test  PageTest complétée
+
+## Patch 0.4.2
+*classe de test PageTest adaptée avec la liste txt fournie.
