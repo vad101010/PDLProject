@@ -17,11 +17,17 @@ import java.util.stream.Stream;
 import static org.junit.Assert.*;
 
 /**
- * Classe de test pour Page
+ * Classe de test pour la classe Page
+ * à partir du fichier wikiurls
  */
 public class PageTest
 {
-
+	
+	/**
+	 * Modifie les liens du fichier wikiurls en url wikipédia
+	 * @param String url du fichier wikiurls
+	 * @return String url conforme
+	 */
     private static String creationLien(String filePath)
     {
         StringBuilder contentBuilder = new StringBuilder();
@@ -39,6 +45,10 @@ public class PageTest
         return contentBuilder.toString();
     }
 
+    /**
+	 * Test si la valeur du String présent dans le tableau des url est conforme
+	 * et si elle correspond à la valeur attendue
+	 */
     @Test
     public void getUrl() throws IOException {
 
@@ -56,9 +66,12 @@ public class PageTest
             assertTrue("Fonction getUrl() pour l'url contenu Ã  la case ["+i+"] : " ,test.equals(list.get(i)));
         }
             //Affiche une erreur quand les sites comportent des parenthÃ¨ses dans l'url. Dans la liste, ici 22. Sinon les tests passent tous
-        }
+    }
 
-
+    /**
+     * Test si le titre de la page correspond à ce qu'il y a dans le fichier wikiurls
+     * 
+     */
     @Test
     public void getTitle()
     {
@@ -77,9 +90,11 @@ public class PageTest
         String test = page_test.getTitle();
 
         assertTrue("Fonction getTitle()",test.equals("Nombre premier"));
-
     }
 
+    /**
+     * Test si la liste des fichiers CSV soit la même entre celle extraite et celle attendue 
+     */
     @Test
     public void getCsvList()
     {
@@ -90,30 +105,32 @@ public class PageTest
         for(int i = 0;i<list.size();i++){
             System.out.println("Case [" + i + "] : " + list.get(i));
         }
-
+        
         Url url_test = new Url("https://fr.wikipedia.org/wiki/Nombre_premier");
         ArrayList array_test = new ArrayList();
         array_test.add("Liste Test 1");
         array_test.add("Liste Test 2");
         Page page_test = new Page(url_test,array_test);
-
-
+        
         for (Object s : array_test) {
             assertArrayEquals("Fonction getCsvLest()",array_test.toArray(), page_test.getCsvList().toArray());
         }
     }
 
+    /**
+     * Test si le titre de la page correspond à ce qu'il y a dans le fichier wikiurls
+     * (sans les espaces)
+     */
     @Test
     public void getTitleWithoutSpace()
     {
-
         ArrayList<String[]> lien = new ArrayList<>();
         String lien_string = this.creationLien("inputdata/wikiurls.txt");
         List<String> list = new ArrayList<String>(Arrays.asList(lien_string.split("\n")));
         for(int i = 0;i<list.size();i++){
             System.out.println("Case [" + i + "] : " + list.get(i));
         }
-
+        
         Url url_test = new Url("https://fr.wikipedia.org/wiki/Nombre_premier");
         ArrayList array_test = new ArrayList();
         array_test.add("Liste Test 1");
