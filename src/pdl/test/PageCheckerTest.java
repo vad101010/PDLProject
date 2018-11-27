@@ -11,9 +11,15 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-
+/**
+ * Classe de test pour la classe PageChecker
+ */
 public class PageCheckerTest
 {
+	
+	/**
+	 * Vérifie si la page testée existe
+	 */
     @Test
     public void existingPagesTest_withHttps() {
         Map<String, Integer> urlMap = new HashMap<>();
@@ -27,6 +33,10 @@ public class PageCheckerTest
         }
     }
 
+    /**
+     * Vérifie si une page testée sans http peut être testée 
+     * (la fonction ajoute elle même le http manquant)
+     */
     @Test
     public void existingPagesTest_WithoutHttps() {
         Map<String, Integer> urlMap = new HashMap<>();
@@ -45,6 +55,9 @@ public class PageCheckerTest
         }
     }
 
+    /**
+     * Vérifie si la page est valide ou non
+     */
     @Test
     public void pageNotValid() {
         List<String> urlToTest = new ArrayList<>();

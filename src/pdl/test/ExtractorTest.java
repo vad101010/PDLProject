@@ -14,7 +14,7 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 /**
- * Classe de test pour Extractor
+ * Classe de test pour la classe Extractor
  */
 public class ExtractorTest
 {
