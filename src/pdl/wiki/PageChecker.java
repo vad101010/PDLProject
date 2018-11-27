@@ -68,7 +68,7 @@ public abstract class PageChecker
             Elements tables = page.select(".wikitable");
             for (Element table : tables) {
                 // On compte le nombre de cases fusionnées afin d'en ignorer les tableaux parents
-                int nbExtendedCells = table.select("td[colspan]").size() + table.select("td[rowspan]").size();
+                int nbExtendedCells = table.select("td[colspan]").size() + table.select("td[rowspan]").size() + table.select("th[colspan]").size() + table.select("th[rowspan]").size();
                 if (nbExtendedCells == 0) {
                     colTable.add(table);
                 }
