@@ -85,7 +85,10 @@ Projet PDL Wiki
 * Classe BenchTest complétée (à vérifier à la fin du projet)
 
 ## Patch 0.4.1
-*classe de test  PageTest complétée
+* Classe de test  PageTest complétée
 
 ## Patch 0.4.2
-*classe de test PageTest adaptée avec la liste txt fournie.
+* Classe de test PageTest adaptée avec la liste txt fournie
+
+## Patch 0.4.3
+* PageChecker : gestion des cellules \<th> (peuvent contenir des rowspan & colspan)
