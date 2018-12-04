@@ -10,6 +10,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Test les URL du fichier wikiurls et les répartit en 2 fichiers
+ * en fonction des extracteurs (dans output, soit html soit wikitext)
+ */
 public class BenchTest
 {
     Extractor extractorwiki;
@@ -17,6 +21,9 @@ public class BenchTest
     List<String> csvwiki;
     List<String> csvhtml;
 
+    /**
+     * Initialise les extracteurs html et wikitext avant de faire les tests
+     */
     @Before
     public void setUp() throws Exception
     {
@@ -71,11 +78,23 @@ public class BenchTest
 
     }
 
+    /**
+     * Crée le fichier CSV à partir de l'url
+     * @param String url qui est l'url du fichier que l'on veut créer
+     * @param int n qui est le numéro du tableau de cette page
+     * @return String le chemin du fichier CSV
+     */
     private String mkCSVFileName(String url, int n)
     {
         return url.trim() + "-" + n + ".csv";
     }
 
+    /**
+     * Ecrit dans les fichiers html et wikitext le lien du fichier CSV
+     * @param String method qui définit si le fichier doit aller dans html ou wikitext
+     * @param String url qui correspond à l'url de la page wikipédia
+     * @param List<String> qui est la liste des liens CSV
+     */
     private void writefile(String method, String url, List<String> csvlist) throws IOException
     {
         int i = 1;
