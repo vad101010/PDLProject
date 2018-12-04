@@ -45,68 +45,40 @@ public class HTMLExtractor implements Extractor {
     @Override
     public List<String> getCSV(Url purl)
     {
-        String url = purl.getLink();
         List<String> csvData = new ArrayList<>();
 
-        try{
-            Elements tableElement = getTables(url);
-            StringBuilder ligne = new StringBuilder();
-            Elements tableHeaderEles = tableElement.select("thead tr th");
+        StringBuilder ligne;
 
-            List<Element> listTables = purl.getListTables();
+        List<Element> listTables = purl.getListTables();
+        for(Element e : listTables) {
+            //Elements elements = e.select("tr");
 
-            Iterator<Element> iterator = listTables.iterator();
-            while (iterator.hasNext()) {
+            Elements elements1 = e.select(":not(thead) tr");
+
+            for (Element anElements1 : elements1) {
                 ligne = new StringBuilder();
-                ligne.append(iterator.next().select());
-
-                if(i != tableHeaderEles.size() -1){
-                    ligne.append(";");
-                }
-            }
-            }
-
-
-            for (int i = 0; i < tableHeaderEles.size(); i++) {
-                ligne = new StringBuilder();
-                ligne.append(tableHeaderEles.get(i).text());
-
-                if(i != tableHeaderEles.size() -1){
-                    ligne.append(";");
-                }
-            }
-
-            csvData.add(ligne.toString());
-            Elements tableRowElements = tableElement.select(":not(thead) tr");
-
-            for (int i = 0; i < tableRowElements.size(); i++) {
-                ligne = new StringBuilder();
-                Element row = tableRowElements.get(i);
+                Element row = anElements1;
                 Elements rowItems = row.select("td");
                 for (int j = 0; j < rowItems.size(); j++) {
                     ligne.append(rowItems.get(j).text());
 
-                    if(j != rowItems.size() -1){
+                    if (j != rowItems.size() - 1) {
                         ligne.append(";");
                     }
                 }
                 csvData.add(ligne.toString());
             }
-
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
         return csvData;
     }
 
     public static void main(String[] args) {
         HTMLExtractor html = new HTMLExtractor();
-        Url url = new Url("https://fr.wikipedia.org/wiki/Table_de_multiplication");
+        Url url = new Url("https://fr.wikipedia.org/wiki/ATP_World_Tour#Le_classement_ATP");
+
         List<String> list = html.getCSV(url);
-        Iterator<String> iterator = list.iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
+        for (String aList : list) {
+            System.out.println(aList);
         }
     }
 }
