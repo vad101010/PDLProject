@@ -93,5 +93,8 @@ Projet PDL Wiki
 ## Patch 0.4.3
 * PageChecker : gestion des cellules \<th> (peuvent contenir des rowspan & colspan)
 
-## Pacth 0.4.4
+## Patch 0.4.4
 * HTMLExtractor : version 1 de la classe, renvoie bien sous format de liste les différents tableaux.
+
+## Patch 0.4.5
+* Tests de Extractor terminé

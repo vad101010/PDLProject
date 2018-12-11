@@ -71,7 +71,6 @@ public class BenchTest
 
             nurl++;
         }
-
         br.close();
         assertEquals(nurl, 336);
 
