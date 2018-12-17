@@ -7,7 +7,7 @@ public interface Extractor
     /**
      * Renvoi la liste des csv d'une url wikipédia
      * @param purl url wikipédia
-     * @return une liste de CSV
+     * @return une liste de tableaux contenant des liste de lignes du CSV
      */
-    List<String> getCSV(Url purl);
+    List<List<String>> getCSV(Url purl);
 }

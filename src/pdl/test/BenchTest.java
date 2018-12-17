@@ -18,8 +18,8 @@ public class BenchTest
 {
     Extractor extractorwiki;
     Extractor extractorhtml;
-    List<String> csvwiki;
-    List<String> csvhtml;
+    List<List<String>> csvwiki;
+    List<List<String>> csvhtml;
 
     /**
      * Initialise les extracteurs html et wikitext avant de faire les tests
@@ -79,8 +79,9 @@ public class BenchTest
 
     /**
      * Crée le fichier CSV à partir de l'url
+     *
      * @param String url qui est l'url du fichier que l'on veut créer
-     * @param int n qui est le numéro du tableau de cette page
+     * @param int    n qui est le numéro du tableau de cette page
      * @return String le chemin du fichier CSV
      */
     private String mkCSVFileName(String url, int n)
@@ -90,19 +91,24 @@ public class BenchTest
 
     /**
      * Ecrit dans les fichiers html et wikitext le lien du fichier CSV
-     * @param String method qui définit si le fichier doit aller dans html ou wikitext
-     * @param String url qui correspond à l'url de la page wikipédia
-     * @param List<String> qui est la liste des liens CSV
+     *
+     * @param String       method qui définit si le fichier doit aller dans html ou wikitext
+     * @param String       url qui correspond à l'url de la page wikipédia
+     * @param List<List<String>> qui est la liste des liens CSV
      */
-    private void writefile(String method, String url, List<String> csvlist) throws IOException
+    private void writefile(String method, String url, List<List<String>> csvlist) throws IOException
     {
         int i = 1;
         FileOutputStream fos = null;
-        for (String uncsv : csvlist)
+        for (List<String> csv : csvlist)
         {
             File csvfile = new File("output/" + method + "/" + mkCSVFileName(url, 1));
             fos = new FileOutputStream(csvfile.getAbsolutePath());
-            fos.write(uncsv.getBytes());
+            for (String ligneCsv : csv)
+            {
+                fos.write(ligneCsv.getBytes());
+                fos.write(System.getProperty("line.separator").getBytes());
+            }
             fos.flush();
             fos.close();
             i++;

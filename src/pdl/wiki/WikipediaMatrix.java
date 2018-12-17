@@ -2,6 +2,7 @@ package pdl.wiki;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe principale avec l'interface utilisateur
@@ -210,12 +211,13 @@ public class WikipediaMatrix
         for (Page page : pages)
         {
             int i = 0;
-            for (String csv : page.getCsvList())
+            for (List<String> csvList : page.getCsvList())
             {
                 String fileSeparator = System.getProperty("file.separator");
                 File file = new File(savePath + fileSeparator + dirname + fileSeparator + page.getTitleWithoutSpace() + "-" + i + ".csv");
                 try
                 {
+                    new File(savePath + fileSeparator + dirname).mkdir();
                     file.createNewFile();
                 }
                 catch (IOException e)
@@ -226,7 +228,11 @@ public class WikipediaMatrix
                 try
                 {
                     fos = new FileOutputStream(file.getAbsolutePath());
-                    fos.write(csv.getBytes());
+                    for (String ligneCsv : csvList)
+                    {
+                        fos.write(ligneCsv.getBytes());
+                        fos.write(System.getProperty("line.separator").getBytes());
+                    }
                     fos.flush();
                     fos.close();
                     System.out.println("'" + file.getAbsolutePath() + "' a été enregistré");

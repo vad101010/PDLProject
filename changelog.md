@@ -98,3 +98,7 @@ Projet PDL Wiki
 
 ## Patch 0.4.5
 * Tests de Extractor terminé
+
+## Patch 0.4.6
+* Correction du HTMLExtractor
+* Changement des List CSV

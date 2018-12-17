@@ -11,10 +11,10 @@ import java.util.List;
 public class Page
 {
     private String title;
-    private List<String> csvList;
+    private List<List<String>> csvList;
     private Url url;
 
-    public Page(Url url, List<String> csvList)
+    public Page(Url url, List<List<String>> csvList)
     {
         this.url = url;
         this.csvList = csvList;
@@ -45,7 +45,7 @@ public class Page
      * Permet de connaitre la liste des �l�ments contenu dans le fichier csv
      * @return retourne un tableau des diff�rents �l�ments contenu dans le fichier csv
      */
-    public List<String> getCsvList()
+    public List<List<String>> getCsvList()
     {
         return csvList;
     }

@@ -28,8 +28,8 @@ public class ExtractorTest
     String UrlWithTables;
     Map<String, Integer> nbtabliens;
     ArrayList<String> liens;
-    List<String> csvwiki;
-    List<String> csvhtml;
+    List<List<String>> csvwiki;
+    List<List<String>> csvhtml;
     List<String> csvTest;
 
     @Before
@@ -75,8 +75,8 @@ public class ExtractorTest
         csvwiki = extractorwiki.getCSV(new Url(UrlWithTables));
         for (int i = 0; i < 5; i++)
         {
-            assertTrue("Nombre de lignes du CSV différent trouvé (HTML)", countCsvLines(csvhtml.get(i), false) == countCsvLines(csvTest.get(i), false));
-            assertTrue("Nombre de colonnes du CSV différent trouvé (Wiki)", countCsvLines(csvwiki.get(i), true) == countCsvLines(csvTest.get(i), true));
+            assertTrue("Nombre de lignes du CSV différent trouvé (HTML)", csvhtml.get(i).size() == countCsvLines(csvTest.get(i), false));
+            assertTrue("Nombre de colonnes du CSV différent trouvé (Wiki)", countCsvLines(csvwiki.get(i).get(0), true) == countCsvLines(csvTest.get(i), true));
             ;
         }
     }
