@@ -17,36 +17,46 @@ import java.util.List;
 
 /**
  * Extrait les tableaux des pages HTML en format Wikitext
+ *
  * @return la liste des tableaux CSV créés
  */
 public class WikiTextExtractor implements Extractor
 {
     @Override
-    public List<String> getCSV(Url purl)
+    public List<List<String>> getCSV(Url purl)
     {
         ArrayList<String> liste = new ArrayList<>();
         String wikitext = getWikitextFromApi(purl);
-        if (!wikitext.equals("")) {
+        if (!wikitext.equals(""))
+        {
             WikitextParser parser = new WikitextParser(new SimpleParserConfig());
-            try {
+            try
+            {
                 System.out.println("AVANT parseArticle()");
                 WtNode test = parser.parseArticle(wikitext, "test");
                 System.out.println("APRES parseArticle()");
                 liste.add("ça marche");
-            } catch (IOException | ParseException e) {
+            }
+            catch (IOException | ParseException e)
+            {
                 e.printStackTrace();
             }
         }
-        return liste;
+        List<List<String>> listDeList = new ArrayList<>();
+        listDeList.add(liste);
+        return listDeList;
     }
-    
+
     /**
      * Récupère la page HTML à partir de l'URL
+     *
      * @return le wikitext de la page en String
      */
-    private String getWikitextFromApi(Url pUrl) {
+    private String getWikitextFromApi(Url pUrl)
+    {
         String wt = "";
-        try {
+        try
+        {
             URL apiUrl = new URL("https://" + pUrl.getLang() + ".wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&page=" + pUrl.getPageName());
             HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
             connection.setDoOutput(true);
@@ -61,7 +71,9 @@ public class WikiTextExtractor implements Extractor
             String jsonString = sw.toString();
             JSONObject apiResult = new JSONObject(jsonString);
             wt = apiResult.getJSONObject("parse").getJSONObject("wikitext").toMap().get("*").toString();
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
         return wt;

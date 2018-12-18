@@ -102,3 +102,8 @@ Projet PDL Wiki
 ## Patch 0.4.6
 * Correction du HTMLExtractor
 * Changement des List CSV
+
+## Patch 0.4.7
+* Ajout LICENSE.md
+* Ajout README.md
+* Rename CHANGELOG.md
