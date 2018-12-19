@@ -2,6 +2,24 @@
 
 A simple command line, java based, Wikipedia table extractor.
 
+## Introduction
+
+These introduction will tell you more about the objectives and the results that will get by using this software.
+
+### Objective
+
+The software aim to return you as much table as possible from a wikipedia page that you provide to it in CSV format. It will try to exclude the table that cannot be parsed into CSV and inform you about how much table it can parse.
+
+### Results
+
+If you give a wikipedia page link that contains tables, the software will generate you the CSV for every valid tables in the page and exclude the ones that cannot be converted into CSV.
+
+If you give a wikipedia page link that doesn't contains any valid tables or no tables at all, the software will inform you of this and won't generate any file.
+
+If you give any other link than wikipedia, the software will tell you that the page you provide is not compatible and won't generate any file.
+
+At every steps you can check the list of link that you provided to the software and check if and how many table it can extract.
+
 ## Getting Started
 
 These instructions will show you how to get a working copy of the project to allow you to run and test de software.

@@ -107,3 +107,6 @@ Projet PDL Wiki
 * Ajout LICENSE.md
 * Ajout README.md
 * Rename CHANGELOG.md
+
+## Patch 0.4.8
+* Modification README.md
