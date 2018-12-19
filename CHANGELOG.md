@@ -85,7 +85,7 @@ Projet PDL Wiki
 * Classe BenchTest complétée (à vérifier à la fin du projet)
 
 ## Patch 0.4.1
-* Classe de test  PageTest complétée
+* Classe de test PageTest complétée
 
 ## Patch 0.4.2
 * Classe de test PageTest adaptée avec la liste txt fournie
