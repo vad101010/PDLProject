@@ -11,16 +11,18 @@ import java.util.List;
 public class Page
 {
     private String title;
-    private List<List<String>> csvList;
+    private List<List<String>> csvListHtml;
+    private List<List<String>> csvListWikitext;
     private Url url;
 
-    public Page(Url url, List<List<String>> csvList)
+    public Page(Url url)
     {
         this.url = url;
-        this.csvList = csvList;
         // Récupération du titre
         this.title = purifyTitle();
     }
+
+
 
     /**
      * Permet de r�cuperer l'url sur lequel nous travaillons
@@ -42,12 +44,35 @@ public class Page
     }
 
     /**
-     * Permet de connaitre la liste des �l�ments contenu dans le fichier csv
-     * @return retourne un tableau des diff�rents �l�ments contenu dans le fichier csv
+     * Permet d'ajouter la liste de csv généré par HTMLExtractor
+     * @param csvListHtml
      */
-    public List<List<String>> getCsvList()
-    {
-        return csvList;
+    public void setCsvListHtml(List<List<String>> csvListHtml) {
+        this.csvListHtml = csvListHtml;
+    }
+
+    /**
+     * Permet d'ajouter la liste de csv généré par WikiTextExtractor
+     * @param csvListWikitext
+     */
+    public void setCsvListWikitext(List<List<String>> csvListWikitext) {
+        this.csvListWikitext = csvListWikitext;
+    }
+
+    /**
+     * Permet de connaitre la liste des �l�ments contenu dans le fichier csv
+     * @return retourne une liste des diff�rents �l�ments contenu dans le fichier csv généré par le HTMLExtractor
+     */
+    public List<List<String>> getCsvListHtml() {
+        return csvListHtml;
+    }
+
+    /**
+     * Permet de connaitre la liste des �l�ments contenu dans le fichier csv
+     * @return retourne un tableau des diff�rents �l�ments contenu dans le fichier csv généré par le WikiTextExtractor
+     */
+    public List<List<String>> getCsvListWikitext() {
+        return csvListWikitext;
     }
 
     /**

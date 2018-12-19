@@ -29,7 +29,6 @@ public abstract class PageChecker
         if (pageExist(pUrl)) {
             return pageContainsTable(pUrl);
         }
-//        return new ArrayList<Element>();
         return null;
     }
 

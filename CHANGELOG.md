@@ -110,3 +110,10 @@ Projet PDL Wiki
 
 ## Patch 0.4.8
 * Modification README.md
+
+## Patch 1.0.0
+* WikiTextExtractor : finalisation du code
+* HTMLExtractor : corrections pour supprimer les notes
+* Page : dédoublage des listes de CSV pour chaque extracteur
+* WikipediaMatrix : fix pour la création des fichiers
+* Démo : dans le dossier "other"

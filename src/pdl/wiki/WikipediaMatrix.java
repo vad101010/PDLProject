@@ -28,9 +28,9 @@ public class WikipediaMatrix
                     nbcsv += url.getTableCount();
                 }
             }
-            System.out.println("Les CSV seront sauvegarder sous : '" + savePath + "'");
-            System.out.println("Nombre de tableau trouvé : " + nbcsv);
-            System.out.println("Veuillez choisir une option parmis:");
+            System.out.println("Les CSV seront sauvegardés sous : '" + savePath + "'");
+            System.out.println("Nombre de tableau(x) trouvé(s) : " + nbcsv);
+            System.out.println("Veuillez choisir une option parmi :");
             System.out.println("1. Lister les liens");
             System.out.println("2. Ajouter un lien (Wikipedia)");
             System.out.println("3. Retirer un lien");
@@ -40,7 +40,7 @@ public class WikipediaMatrix
                 System.out.println("5. Sauvegarder les tableaux (au format CSV) et quitter");
             }
             System.out.println("0. Quitter sans sauvegarder");
-            System.out.println("votre choix ?");
+            System.out.println("Votre choix ?");
             try
             {
                 String strchoix = reader.readLine();
@@ -78,7 +78,7 @@ public class WikipediaMatrix
                         break;
                     }
                 default:
-                    System.out.println("veuillez faire un choix entre 0 et 5");
+                    System.out.println("Veuillez faire un choix entre 0 et 5");
             }
         }
     }
@@ -101,7 +101,7 @@ public class WikipediaMatrix
     private static void addLink()
     {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("collez le lien (CTRL+V):");
+        System.out.println("Collez le lien (CTRL+V):");
         try
         {
             String lien = reader.readLine();
@@ -124,7 +124,7 @@ public class WikipediaMatrix
             return;
         }
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("liste des liens enregistrés:");
+        System.out.println("Liste des liens enregistrés:");
         for (int i = 0; i < urls.size(); i++)
         {
             System.out.println(i + ". " + urls.get(i).toString());
@@ -177,8 +177,20 @@ public class WikipediaMatrix
      */
     private static void saveCSV()
     {
-        Extractor extractor = null;
-        for (int i = 0; i < 2; i++)
+        Extractor htmlExtract = new HTMLExtractor();
+        Extractor wikiExtract = new WikiTextExtractor();
+        for (Url url : urls)
+        {
+            if (url.getTableCount() > 0)
+            {
+                Page page = new Page(url);
+                page.setCsvListHtml(htmlExtract.getCSV(url));
+                page.setCsvListWikitext(wikiExtract.getCSV(url));
+                pages.add(page);
+            }
+        }
+        pagestoFile();
+        /*for (int i = 0; i < 2; i++)
         {
             String dirname = "";
             switch (i)
@@ -193,56 +205,73 @@ public class WikipediaMatrix
             }
             for (Url url : urls)
             {
+                System.out.println(dirname + " - " + urls.size());
                 if (url.getTableCount() > 0)
                 {
-                    Page page = new Page(url, extractor.getCSV(url));
+                    Page page = new Page(url);
+                    page.setCsvListHtml(extractor.getCSV(url));
+                    page.setCsvListWikitext(extractor.getCSV(url));
                     pages.add(page);
                 }
             }
             PagetoFile(dirname);
-        }
+        }*/
     }
 
     /**
      * enregistre les Pages au format CSV
      */
-    private static void PagetoFile(String dirname)
+    private static void pagestoFile()
     {
         for (Page page : pages)
         {
-            int i = 0;
-            for (List<String> csvList : page.getCsvList())
+            createAndSave("html", page);
+            createAndSave("wikitext", page);
+        }
+    }
+
+    private static void createAndSave(String type, Page page) {
+        int i = 0;
+        List<List<String>> list = null;
+        String dirname = type;
+        switch (type) {
+            case "html":
+                list = page.getCsvListHtml();
+                break;
+            case "wikitext":
+                list = page.getCsvListWikitext();
+        }
+        for (List<String> csvList : list)
+        {
+            String fileSeparator = System.getProperty("file.separator");
+            File file = new File(savePath + fileSeparator + dirname + fileSeparator + page.getTitleWithoutSpace() + "-" + i + ".csv");
+            try
             {
-                String fileSeparator = System.getProperty("file.separator");
-                File file = new File(savePath + fileSeparator + dirname + fileSeparator + page.getTitleWithoutSpace() + "-" + i + ".csv");
-                try
-                {
-                    new File(savePath + fileSeparator + dirname).mkdir();
-                    file.createNewFile();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-                FileOutputStream fos = null;
-                try
-                {
-                    fos = new FileOutputStream(file.getAbsolutePath());
-                    for (String ligneCsv : csvList)
-                    {
-                        fos.write(ligneCsv.getBytes());
-                        fos.write(System.getProperty("line.separator").getBytes());
-                    }
-                    fos.flush();
-                    fos.close();
-                    System.out.println("'" + file.getAbsolutePath() + "' a été enregistré");
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-                i++;
+                new File(savePath + fileSeparator + dirname).mkdir();
+                file.createNewFile();
             }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            FileOutputStream fos = null;
+            try
+            {
+                fos = new FileOutputStream(file.getAbsolutePath());
+                for (String ligneCsv : csvList)
+                {
+                    fos.write(ligneCsv.getBytes());
+                    fos.write(System.getProperty("line.separator").getBytes());
+                }
+                fos.flush();
+                fos.close();
+                System.out.println("'" + file.getAbsolutePath() + "' a été enregistré");
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            i++;
         }
     }
 

@@ -1,44 +1,16 @@
 package pdl.wiki;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe permettant la conversion de tables d'une page HTML en format CSV
  */
 public class HTMLExtractor implements Extractor
 {
-
-    /**
-     * Constructeur de HTMLExtractor par défaut
-     */
-    public HTMLExtractor()
-    {
-    }
-
-    /**
-     * Méthode qui convertit l'url passé en parametre en document, puis recupère les tableaux
-     * correspondant
-     *
-     * @param purl Url de la page HTML
-     * @return Les tableaux sous format Elements
-     * @throws IOException
-     */
-    public Elements getTables(String purl) throws IOException
-    {
-        Document doc = Jsoup.connect(purl).get();
-        Elements table = doc
-                .select("table");
-        return table;
-    }
-
     /**
      * Convertit les tables d'une page url, validée par PageChecker en une collection de tables au format CSV
      * <p>
@@ -56,19 +28,22 @@ public class HTMLExtractor implements Extractor
         for (Element e : listTables)
         {
             List<String> csvData = new ArrayList<>();
-            //Elements elements = e.select("tr");
 
-            Elements elements1 = e.select(":not(thead) tr");
+//            csvData.add(getTableHeader(e));
+            // Suppression des tags <sup> et <sub>, étant trop souvent des liens
+            e.getElementsByTag("sup").remove();
+            e.getElementsByTag("sub").remove();
 
+            Elements elements1 = e.select("tr");
             for (Element anElements1 : elements1)
             {
                 ligne = new StringBuilder();
-                Element row = anElements1;
-                Elements rowItems = row.select("td");
+//                Elements rowItems = anElements1.select("td");
+                Elements rowItems = anElements1.children();
                 for (int j = 0; j < rowItems.size(); j++)
                 {
-                    ligne.append(rowItems.get(j).text());
-
+                    String cellContent = rowItems.get(j).text().replaceAll(";", ",");
+                    ligne.append(cellContent);
                     if (j != rowItems.size() - 1)
                     {
                         ligne.append(";");
@@ -80,4 +55,14 @@ public class HTMLExtractor implements Extractor
         }
         return listeDeList;
     }
+
+    private String getTableHeader(Element e) {
+        String csvHeader = "";
+        Elements header = e.select("thead tr td");
+        for (Element colHeader : header) {
+            csvHeader += colHeader.text();
+        }
+        return csvHeader;
+    }
+
 }
