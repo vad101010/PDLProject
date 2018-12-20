@@ -1,4 +1,4 @@
-package pdl.wiki;
+package fr.istic;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

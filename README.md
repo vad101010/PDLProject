@@ -45,7 +45,7 @@ Everything is now set and you are ready to run the program.
 The Tests are located under:
 
 ```
-src/pdl/test
+src/test/java/fr/istic
 ```
 
 You can simply run them with your favorite IDE.
@@ -53,7 +53,7 @@ You can simply run them with your favorite IDE.
 ### Client Benchmark
 
 ```
-src/pdl/test/BenchTest.java
+src/test/java/fr/istic/BenchTest.java
 ```
  This is the class that the client asked us to add and implement into our project. You can use it to BenchMark the software with 300 Wikipedia Links.
 

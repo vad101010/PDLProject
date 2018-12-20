@@ -1,4 +1,4 @@
-package pdl.wiki;
+package fr.istic;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;

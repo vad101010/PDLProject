@@ -1,4 +1,4 @@
-package pdl.wiki;
+package fr.istic;
 
 import java.util.List;
 

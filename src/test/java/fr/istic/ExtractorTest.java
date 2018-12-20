@@ -1,13 +1,12 @@
-package pdl.test;
+package fr.istic;
 
+import fr.istic.Extractor;
+import fr.istic.HTMLExtractor;
+import fr.istic.Url;
+import fr.istic.WikiTextExtractor;
 import org.apache.commons.io.FileUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import pdl.wiki.Extractor;
-import pdl.wiki.HTMLExtractor;
-import pdl.wiki.Url;
-import pdl.wiki.WikiTextExtractor;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,10 +14,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Classe de test pour la classe Extractor
+ * Classe de test pour la classe fr.istic.Extractor
  */
 public class ExtractorTest
 {
@@ -32,7 +31,7 @@ public class ExtractorTest
     List<List<String>> csvhtml;
     List<String> csvTest;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception
     {
         extractorhtml = new HTMLExtractor();
@@ -63,8 +62,8 @@ public class ExtractorTest
         //test du nombre de tableau trouvé
         for (String lien : liens)
         {
-            assertTrue("nombre de tableau trouvé incorrecte (extractor wiki, lien:" + lien + ")", nbtabliens.get(lien) == extractorwiki.getCSV(new Url(lien)).size());
-            assertTrue("nombre de tableau trouvé incorrecte (extractor HTML, lien:" + lien + ")", nbtabliens.get(lien) == extractorhtml.getCSV(new Url(lien)).size());
+            assertTrue( nbtabliens.get(lien) == extractorwiki.getCSV(new Url(lien)).size(),"nombre de tableau trouvé incorrecte (extractor wiki, lien:" + lien + ")");
+            assertTrue( nbtabliens.get(lien) == extractorhtml.getCSV(new Url(lien)).size(),"nombre de tableau trouvé incorrecte (extractor HTML, lien:" + lien + ")");
         }
     }
 
@@ -75,8 +74,8 @@ public class ExtractorTest
         csvwiki = extractorwiki.getCSV(new Url(UrlWithTables));
         for (int i = 0; i < 5; i++)
         {
-            assertTrue("Nombre de lignes du CSV différent trouvé (HTML)", csvhtml.get(i).size() == countCsvLines(csvTest.get(i), false));
-            assertTrue("Nombre de colonnes du CSV différent trouvé (Wiki)", countCsvLines(csvwiki.get(i).get(0), true) == countCsvLines(csvTest.get(i), true));
+            assertTrue(csvhtml.get(i).size() == countCsvLines(csvTest.get(i), false), "Nombre de lignes du CSV différent trouvé (HTML)");
+            assertTrue(countCsvLines(csvwiki.get(i).get(0), true) == countCsvLines(csvTest.get(i), true), "Nombre de colonnes du CSV différent trouvé (Wiki)");
             ;
         }
     }

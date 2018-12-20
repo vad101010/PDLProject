@@ -1,14 +1,18 @@
-package pdl.test;
+package fr.istic;
 
-import org.junit.Before;
-import org.junit.Test;
-import pdl.wiki.*;
+import fr.istic.Extractor;
+import fr.istic.HTMLExtractor;
+import fr.istic.Url;
+import fr.istic.WikiTextExtractor;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.*;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test les URL du fichier wikiurls et les répartit en 2 fichiers
@@ -24,7 +28,7 @@ public class BenchTest
     /**
      * Initialise les extracteurs html et wikitext avant de faire les tests
      */
-    @Before
+    @BeforeEach
     public void setUp() throws Exception
     {
         extractorhtml = new HTMLExtractor();

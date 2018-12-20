@@ -1,8 +1,7 @@
-package pdl.wiki;
+package fr.istic;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -17,7 +16,7 @@ public class HTMLExtractor implements Extractor
 {
 
     /**
-     * Constructeur de HTMLExtractor par défaut
+     * Constructeur de fr.istic.HTMLExtractor par défaut
      */
     public HTMLExtractor()
     {
@@ -27,7 +26,7 @@ public class HTMLExtractor implements Extractor
      * Méthode qui convertit l'url passé en parametre en document, puis recupère les tableaux
      * correspondant
      *
-     * @param purl Url de la page HTML
+     * @param purl fr.istic.Url de la page HTML
      * @return Les tableaux sous format Elements
      * @throws IOException
      */
@@ -40,7 +39,7 @@ public class HTMLExtractor implements Extractor
     }
 
     /**
-     * Convertit les tables d'une page url, validée par PageChecker en une collection de tables au format CSV
+     * Convertit les tables d'une page url, validée par fr.istic.PageChecker en une collection de tables au format CSV
      * <p>
      * url de la page Wikipédia contentant les tables
      *

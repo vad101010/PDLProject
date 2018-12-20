@@ -30,50 +30,50 @@ Projet PDL Wiki
 * Ajout de Junit dans les sources du projet 
 
 ## Patch 0.1.2
-* Fichier Page completé
-* Fichier Url completé
+* Fichier fr.istic.Page completé
+* Fichier fr.istic.Url completé
 
 ## Patch 0.2
 * Première version du main terminé
 * Squelette TU main ajouté
-* Ajout de méthode et 2 "new" dans Page
+* Ajout de méthode et 2 "new" dans fr.istic.Page
 * Ajout de méthode dans URL et d'un "new"
 * Correction des fautes dans le changelog.md v.0.1.2
 
 ## Patch 0.3
-* Première version de PageChecker
+* Première version de fr.istic.PageChecker
 
 ## Patch 0.3.1
 * Correction de bugs au niveau du main
-* Modification des classes de test (Extractor)
+* Modification des classes de test (fr.istic.Extractor)
 
 ## Patch 0.3.2
-* Ajout d'une liste (List<Element> de jsoup )des tableaux trouvés dans l'Url (à utiliser dans le HtmlExtractor)
-* Correction classe Url
+* Ajout d'une liste (List<Element> de jsoup )des tableaux trouvés dans l'fr.istic.Url (à utiliser dans le HtmlExtractor)
+* Correction classe fr.istic.Url
 
 ## Patch 0.3.3
-* Suppression des setters de la classe Url
-* Gestion du titre de la classe Page
+* Suppression des setters de la classe fr.istic.Url
+* Gestion du titre de la classe fr.istic.Page
 
 ## Patch 0.3.4
 * Main terminé à 100% (TU à faire)
-* Méthode dans WikiTextExtractor modifiée pour les tests
+* Méthode dans fr.istic.WikiTextExtractor modifiée pour les tests
 
 ## Patch 0.3.5
 * Gestion des paramètres et liens internes lors de la génération du titre
 * Message d'erreur si le lien entré est invalide
 
 ## Patch 0.3.6
-* Première version de HTMLExtractor
+* Première version de fr.istic.HTMLExtractor
 * Ajout de JSoup
 
 ## Patch 0.3.7
-* PageCheckerTest : Mise en place de quelques tests
-* WikiTextExtractor : Récupération du wikitext de la page via l'API MediaWiki
-* Url : Ajout de méthodes pour récupérer la langue et le nom de la page (utilisées dans WTExtractor)
+* fr.istic.PageCheckerTest : Mise en place de quelques tests
+* fr.istic.WikiTextExtractor : Récupération du wikitext de la page via l'API MediaWiki
+* fr.istic.Url : Ajout de méthodes pour récupérer la langue et le nom de la page (utilisées dans WTExtractor)
 
 ## Patch 0.3.8
-* WikiTextExtractor : Création config du parser
+* fr.istic.WikiTextExtractor : Création config du parser
 * MàJ des ArrayList en List
 
 ## Patch 0.4
@@ -81,26 +81,26 @@ Projet PDL Wiki
 * suppression de la méthode privé dans les
 * Correction erreur dans Main
 * Modification main en accord avec les tests demandés
-* Ajout classe BenchTest du client
-* Classe BenchTest complétée (à vérifier à la fin du projet)
+* Ajout classe fr.istic.BenchTest du client
+* Classe fr.istic.BenchTest complétée (à vérifier à la fin du projet)
 
 ## Patch 0.4.1
-* Classe de test PageTest complétée
+* Classe de test fr.istic.PageTest complétée
 
 ## Patch 0.4.2
-* Classe de test PageTest adaptée avec la liste txt fournie
+* Classe de test fr.istic.PageTest adaptée avec la liste txt fournie
 
 ## Patch 0.4.3
-* PageChecker : gestion des cellules \<th> (peuvent contenir des rowspan & colspan)
+* fr.istic.PageChecker : gestion des cellules \<th> (peuvent contenir des rowspan & colspan)
 
 ## Patch 0.4.4
-* HTMLExtractor : version 1 de la classe, renvoie bien sous format de liste les différents tableaux.
+* fr.istic.HTMLExtractor : version 1 de la classe, renvoie bien sous format de liste les différents tableaux.
 
 ## Patch 0.4.5
-* Tests de Extractor terminé
+* Tests de fr.istic.Extractor terminé
 
 ## Patch 0.4.6
-* Correction du HTMLExtractor
+* Correction du fr.istic.HTMLExtractor
 * Changement des List CSV
 
 ## Patch 0.4.7

@@ -1,18 +1,19 @@
-package pdl.test;
+package fr.istic;
 
-import org.junit.Test;
-import pdl.wiki.PageChecker;
+import fr.istic.PageChecker;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 
 /**
- * Classe de test pour la classe PageChecker
+ * Classe de test pour la classe fr.istic.PageChecker
  */
 public class PageCheckerTest
 {
