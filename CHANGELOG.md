@@ -117,3 +117,7 @@ Projet PDL Wiki
 * Page : dédoublage des listes de CSV pour chaque extracteur
 * WikipediaMatrix : fix pour la création des fichiers
 * Démo : dans le dossier "other"
+
+## Patch 1.0.1
+* WikiTextExtractor : bug fix d'une exception pouvant survenir si l'API ne trouve pas la page
+* BenchTest : fix création des fichiers

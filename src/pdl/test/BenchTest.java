@@ -58,7 +58,7 @@ public class BenchTest
             String wurl = BASE_WIKIPEDIA_URL + url;
             System.out.println("Wikipedia url: " + wurl);
             Url unurl = new Url(wurl);
-            String csvFileName = mkCSVFileName(url, 1);
+            String csvFileName = mkCSVFileName(url, 0);
             System.out.println("CSV file name: " + csvFileName);
 
             if (unurl.getTableCount() > 0)
@@ -98,11 +98,11 @@ public class BenchTest
      */
     private void writefile(String method, String url, List<List<String>> csvlist) throws IOException
     {
-        int i = 1;
+        int i = 0;
         FileOutputStream fos = null;
         for (List<String> csv : csvlist)
         {
-            File csvfile = new File("output/" + method + "/" + mkCSVFileName(url, 1));
+            File csvfile = new File("output/" + method + "/" + mkCSVFileName(url, i));
             fos = new FileOutputStream(csvfile.getAbsolutePath());
             for (String ligneCsv : csv)
             {

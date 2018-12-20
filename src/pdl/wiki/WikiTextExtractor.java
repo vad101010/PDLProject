@@ -53,7 +53,9 @@ public class WikiTextExtractor implements Extractor
             IOUtils.copy(is, sw, "UTF-8");
             String jsonString = sw.toString();
             JSONObject apiResult = new JSONObject(jsonString);
-            wt = apiResult.getJSONObject("parse").getJSONObject("wikitext").toMap().get("*").toString();
+            if (!apiResult.keySet().contains("error")) {
+                wt = apiResult.getJSONObject("parse").getJSONObject("wikitext").toMap().get("*").toString();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -137,7 +139,7 @@ public class WikiTextExtractor implements Extractor
                             // Récupération du nom de la colonne
                             csv += getColumnName(bodyElement).trim();
                             // On concatène les autres nom de colonnes
-                            while (((WtNode) tableElement.toArray()[numNode + 1]).getNodeName().equals("WtTableHeader") || ((WtNode) tableElement.toArray()[numNode + 1]).getNodeName().equals("WtTableCell")) {
+                            while (numNode + 1 < tableElement.toArray().length && (((WtNode) tableElement.toArray()[numNode + 1]).getNodeName().equals("WtTableHeader") || ((WtNode) tableElement.toArray()[numNode + 1]).getNodeName().equals("WtTableCell"))) {
                                 numNode++;
                                 bodyElement = (WtNode) tableElement.toArray()[numNode];
                                 csv += getColumnName(bodyElement);
@@ -171,7 +173,9 @@ public class WikiTextExtractor implements Extractor
         for (String csvLineElement : csvLineTab) {
             csv += csvLineElement + ";";
         }
-        csv = csv.substring(0, csv.length() - 1);
+        if (csv.length() > 0) {
+            csv = csv.substring(0, csv.length() - 1);
+        }
         return csv;
     }
 
