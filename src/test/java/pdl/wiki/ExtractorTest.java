@@ -4,7 +4,10 @@ import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,10 +43,10 @@ public class ExtractorTest
         liens.add("https://fr.wikipedia.org/wiki/Union_des_r%C3%A9publiques_socialistes_sovi%C3%A9tiques");
         liens.add("https://fr.wikipedia.org/wiki/Oulan-Bator");
         nbtabliens = new HashMap<>();
-        nbtabliens.put("https://fr.wikipedia.org/wiki/Th%C3%BCringer_HC", 1);
+        nbtabliens.put("https://fr.wikipedia.org/wiki/Th%C3%BCringer_HC", 0);
         nbtabliens.put("https://fr.wikipedia.org/wiki/Championnat_d%27Allemagne_f%C3%A9minin_de_handball", 5);
         nbtabliens.put("https://fr.wikipedia.org/wiki/Parti_communiste_de_l%27Union_sovi%C3%A9tique", 3);
-        nbtabliens.put("https://fr.wikipedia.org/wiki/Union_des_r%C3%A9publiques_socialistes_sovi%C3%A9tiques", 2);
+        nbtabliens.put("https://fr.wikipedia.org/wiki/Union_des_r%C3%A9publiques_socialistes_sovi%C3%A9tiques", 1);
         nbtabliens.put("https://fr.wikipedia.org/wiki/Oulan-Bator", 1);
         csvTest = new ArrayList<>();
         for (int i = 1; i < 6; i++)
@@ -58,8 +61,10 @@ public class ExtractorTest
         //test du nombre de tableau trouvé
         for (String lien : liens)
         {
-            assertTrue( nbtabliens.get(lien) == extractorwiki.getCSV(new Url(lien)).size(),"nombre de tableau trouvé incorrecte (extractor wiki, lien:" + lien + ")");
-            assertTrue( nbtabliens.get(lien) == extractorhtml.getCSV(new Url(lien)).size(),"nombre de tableau trouvé incorrecte (extractor HTML, lien:" + lien + ")");
+            int htmlSize = extractorhtml.getCSV(new Url(lien)).size();
+            int wikitextSize = extractorwiki.getCSV(new Url(lien)).size();
+            assertTrue( nbtabliens.get(lien) == wikitextSize,"nombre de tableau trouvé incorrecte (extractor wiki, lien:" + lien + "; prévu : )" + nbtabliens.get(lien) + ", reçu : " + wikitextSize);
+            assertTrue( nbtabliens.get(lien) == htmlSize,"nombre de tableau trouvé incorrecte (extractor HTML, lien:" + lien + "; prévu : )" + nbtabliens.get(lien) + ", reçu : " + htmlSize);
         }
     }
 
@@ -72,7 +77,6 @@ public class ExtractorTest
         {
             assertTrue(csvhtml.get(i).size() == countCsvLines(csvTest.get(i), false), "Nombre de lignes du CSV différent trouvé (HTML)");
             assertTrue(countCsvLines(csvwiki.get(i).get(0), true) == countCsvLines(csvTest.get(i), true), "Nombre de colonnes du CSV différent trouvé (Wiki)");
-            ;
         }
     }
 

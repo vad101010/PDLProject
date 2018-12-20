@@ -1,8 +1,6 @@
 package pdl.wiki;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 import java.io.*;
 import java.util.List;
@@ -16,20 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class BenchTest
 {
-    Extractor extractorwiki;
-    Extractor extractorhtml;
-    List<List<String>> csvwiki;
-    List<List<String>> csvhtml;
-
-    /**
-     * Initialise les extracteurs html et wikitext avant de faire les tests
-     */
-    @BeforeEach
-    public void setUp() throws Exception
-    {
-        extractorhtml = new HTMLExtractor();
-        extractorwiki = new WikiTextExtractor();
-    }
 
     /*
      *  the challenge is to extract as many relevant tables as possible
@@ -40,6 +24,11 @@ public class BenchTest
     @Test
     public void testBenchExtractors() throws Exception
     {
+        Extractor extractorhtml = new HTMLExtractor();
+        Extractor extractorwiki = new WikiTextExtractor();
+        List<List<String>> csvhtml;
+        List<List<String>> csvwiki;
+
 
         String BASE_WIKIPEDIA_URL = "https://en.wikipedia.org/wiki/";
         // directory where CSV files are exported (HTML extractor)
@@ -58,8 +47,8 @@ public class BenchTest
             String wurl = BASE_WIKIPEDIA_URL + url;
             System.out.println("Wikipedia url: " + wurl);
             Url unurl = new Url(wurl);
-            String csvFileName = mkCSVFileName(url, 0);
-            System.out.println("CSV file name: " + csvFileName);
+            String csvFileName = url.trim() + "-X.csv";
+            System.out.println("CSV base file name: " + csvFileName);
 
             if (unurl.getTableCount() > 0)
             {
